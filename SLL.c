@@ -242,3 +242,20 @@ int main(void)
         }
     }
 }
+
+
+Output:
+Choice 1, value 10      (list: 10)
+Choice 2, value 20      (list: 10 20)
+Choice 2, value 30      (list: 10 20 30)
+Choice 3, value 25, position 3
+Choice 8:   10 -> 20 -> 25 -> 30 -> NULL
+Choice 4:   (deletes 10)
+Choice 5:   (deletes 30)
+Choice 6, position 2:   (deletes 25)
+Choice 8:   20 -> NULL
+Choice 7, value 30:   30 not found
+Choice 6, position 6:   Position out of range
+Choice 3, value 0, position 0:   Invalid position
+Choice 12:   Invalid choice
+Choice 9:   (frees the list and exits)
