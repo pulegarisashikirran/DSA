@@ -137,3 +137,24 @@ int main(void)
         }
     }
 }
+
+
+Output :
+Choice 1, value 10
+Choice 1, value 20
+Choice 1, value 30
+Choice 4:   Stack (top to bottom): 30 20 10
+Choice 3:   Top element: 30
+Choice 5:   Stack size: 3
+Choice 2:   Popped 30
+Choice 4:   Stack (top to bottom): 20 10
+Choice 6:   Stack is not empty
+Choice 2:   Popped 20
+Choice 2:   Popped 10
+Choice 6:   Stack is empty
+Choice 2:   Stack underflow! Cannot pop.
+Choice 3:   Stack is empty! Nothing to peek.
+Choice 4:   Stack is empty
+Choice 5:   Stack size: 0
+Choice 12:  Invalid choice
+Choice 7:   (frees the list and exits)
