@@ -1,0 +1,57 @@
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+    int n, e, u, v;
+
+    printf("Enter number of vertices: ");
+    scanf("%d", &n);
+
+    int **a = malloc(n * sizeof(int *));
+
+    for(int i = 0; i < n; i++)
+    {
+        a[i] = calloc(n, sizeof(int));
+    }
+
+    printf("Enter number of edges: ");
+    scanf("%d", &e);
+
+    printf("Enter edges (u v):\n");
+    for(int i = 0; i < e; i++)
+    {
+        scanf("%d%d", &u, &v);
+        a[u][v] = 1;
+        a[v][u] = 1;
+    }
+
+    printf("Adjacency Matrix:\n");
+    for(int i = 0; i < n; i++)
+    {
+        for(int j = 0; j < n; j++)
+            printf("%d ", a[i][j]);
+        printf("\n");
+    }
+
+    for(int i = 0; i < n; i++)
+        free(a[i]);
+    free(a);
+
+    return 0;
+}
+
+Output:
+Enter number of vertices: 4
+Enter number of edges: 4
+Enter edges (u v):
+0 1
+0 2
+1 2
+2 3
+Adjacency Matrix:
+0 1 1 0
+1 0 1 0
+1 1 0 1
+0 0 1 0
