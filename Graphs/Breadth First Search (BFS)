@@ -1,0 +1,76 @@
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+    int n, e, u, v, start;
+
+    printf("Enter number of vertices: ");
+    scanf("%d", &n);
+
+    int **a = malloc(n * sizeof(int *));
+    int *visited = calloc(n, sizeof(int));
+    int *queue = malloc(n * sizeof(int));
+
+    for(int i = 0; i < n; i++)
+        a[i] = calloc(n, sizeof(int));
+
+    printf("Enter number of edges: ");
+    scanf("%d", &e);
+
+    printf("Enter edges (u v):\n");
+    for(int i = 0; i < e; i++)
+    {
+        scanf("%d%d", &u, &v);
+        a[u][v] = a[v][u] = 1;
+    }
+
+    printf("Enter starting vertex: ");
+    scanf("%d", &start);
+
+    int front = 0, rear = 0;
+
+    visited[start] = 1;
+    queue[rear++] = start;
+
+    printf("BFS Traversal: ");
+
+    while(front < rear)
+    {
+        int x = queue[front++];
+        printf("%d ", x);
+
+        for(int i = 0; i < n; i++)
+        {
+            if(a[x][i] && !visited[i])
+            {
+                visited[i] = 1;
+                queue[rear++] = i;
+            }
+        }
+    }
+
+    for(int i = 0; i < n; i++)
+    {
+        free(a[i]);
+    }
+    free(a);
+    free(visited);
+    free(queue);
+
+    return 0;
+}
+
+
+Output:
+Enter number of vertices: 4
+Enter number of edges: 4
+Enter edges (u v):
+0 1
+0 2
+1 2
+2 3
+Enter starting vertex: 0
+
+BFS Traversal: 0 1 2 3
