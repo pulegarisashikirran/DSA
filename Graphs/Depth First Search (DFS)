@@ -1,0 +1,68 @@
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int **a, *visited, n;
+
+void DFS(int v)
+{
+    printf("%d ", v);
+    visited[v] = 1;
+
+    for(int i = 0; i < n; i++)
+    {
+        if(a[v][i] && !visited[i])
+            DFS(i);
+    }
+}
+
+int main()
+{
+    int e, u, v, start;
+
+    printf("Enter number of vertices: ");
+    scanf("%d", &n);
+
+    a = malloc(n * sizeof(int *));
+    visited = calloc(n, sizeof(int));
+
+    for(int i = 0; i < n; i++)
+        a[i] = calloc(n, sizeof(int));
+
+    printf("Enter number of edges: ");
+    scanf("%d", &e);
+
+    printf("Enter edges (u v):\n");
+
+    for(int i = 0; i < e; i++)
+    {
+        scanf("%d%d", &u, &v);
+        a[u][v] = a[v][u] = 1;
+    }
+
+    printf("Enter starting vertex: ");
+    scanf("%d", &start);
+
+    printf("DFS Traversal: ");
+    DFS(start);
+
+    for(int i = 0; i < n; i++)
+        free(a[i]);
+
+    free(a);
+    free(visited);
+
+    return 0;
+}
+
+Output:
+Enter number of vertices: 4
+Enter number of edges: 4
+Enter edges (u v):
+0 1
+0 2
+1 2
+2 3
+Enter starting vertex: 0
+
+DFS Traversal: 0 1 2 3
