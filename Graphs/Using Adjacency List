@@ -1,0 +1,83 @@
+
+#include <stdio.h>
+#include <stdlib.h>
+
+struct Node
+{
+    int vertex;
+    struct Node *next;
+};
+
+int main()
+{
+    int n, e, u, v;
+
+    printf("Enter number of vertices: ");
+    scanf("%d", &n);
+
+    struct Node **a = calloc(n, sizeof(struct Node *));
+
+    printf("Enter number of edges: ");
+    scanf("%d", &e);
+
+    printf("Enter edges (u v):\n");
+
+    for(int i = 0; i < e; i++)
+    {
+        scanf("%d%d", &u, &v);
+
+        struct Node *p = malloc(sizeof(struct Node));
+        p->vertex = v;
+        p->next = a[u];
+        a[u] = p;
+
+        struct Node *q = malloc(sizeof(struct Node));
+        q->vertex = u;
+        q->next = a[v];
+        a[v] = q;
+    }
+
+    printf("Adjacency List:\n");
+
+    for(int i = 0; i < n; i++)
+    {
+        struct Node *temp = a[i];
+        printf("%d: ", i);
+
+        while(temp != NULL)
+        {
+            printf("%d -> ", temp->vertex);
+            temp = temp->next;
+        }
+        printf("NULL\n");
+    }
+
+    for(int i = 0; i < n; i++)
+    {
+        struct Node *temp = a[i];
+        while(temp != NULL)
+        {
+            struct Node *del = temp;
+            temp = temp->next;
+            free(del);
+        }
+    }
+
+    free(a);
+    return 0;
+}
+
+
+Output:
+Enter number of vertices: 4
+Enter number of edges: 4
+Enter edges (u v):
+0 1
+0 2
+1 2
+2 3
+Adjacency List:
+0: 2 -> 1 -> NULL
+1: 2 -> 0 -> NULL
+2: 3 -> 1 -> 0 -> NULL
+3: 2 -> NULL
